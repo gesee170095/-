@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#111827" />
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="icon-192.png" />
+<title>特別区 建築構造｜未出穴埋め100</title>
+<style>
+:root{
+  --bg:#f5f7fb;--card:#fff;--ink:#111827;--muted:#667085;--line:#e5e7eb;
+  --accent:#111827;--accent2:#334155;--ok:#067647;--okbg:#ecfdf3;--ng:#b42318;--ngbg:#fef3f2;
+  --gold:#b54708;--goldbg:#fff7ed;--blue:#175cd3;--bluebg:#eff8ff;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif}
+body{min-height:100vh}
+button,input{font:inherit}
+button{cursor:pointer}
+.wrap{max-width:760px;margin:0 auto;padding:18px 14px 42px}
+.header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}
+.brand{font-weight:900;font-size:20px;letter-spacing:-.02em}.sub{font-size:12px;color:var(--muted);margin-top:3px}
+.homeBtn{border:1px solid var(--line);background:#fff;border-radius:12px;padding:9px 12px;font-weight:800;display:none}
+.hero{background:linear-gradient(140deg,#111827,#334155);color:#fff;border-radius:22px;padding:22px 20px;box-shadow:0 12px 28px rgba(15,23,42,.14);margin-bottom:14px}
+.hero h1{font-size:25px;line-height:1.25;margin:0 0 8px}.hero p{margin:0;color:#e2e8f0;line-height:1.65;font-size:14px}
+.notice{background:#fff;border:1px solid var(--line);border-radius:16px;padding:13px 14px;margin:12px 0 15px;font-size:13px;line-height:1.65;color:#475467}
+.legend{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}.badge{display:inline-flex;align-items:center;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900;white-space:nowrap}
+.badge.s{background:#fee4e2;color:#b42318}.badge.a{background:var(--goldbg);color:var(--gold)}.badge.b{background:var(--bluebg);color:var(--blue)}
+.grid{display:grid;grid-template-columns:1fr;gap:10px}.setCard{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:15px;box-shadow:0 2px 8px rgba(15,23,42,.03)}
+.setTop{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.setNo{font-size:12px;color:var(--muted);font-weight:800}.setTitle{font-weight:900;font-size:17px;margin:2px 0 5px}.setDesc{font-size:12.5px;color:var(--muted);line-height:1.55}.setFoot{display:flex;align-items:center;justify-content:space-between;margin-top:12px;gap:10px}.score{font-size:12px;color:var(--muted);font-weight:700}.start{border:0;background:var(--accent);color:#fff;border-radius:12px;padding:10px 15px;font-weight:900}
+.quizHead{margin-bottom:12px}.crumb{font-size:12px;color:var(--muted);font-weight:800}.quizTitle{font-size:21px;font-weight:900;margin:4px 0 8px}.progressTrack{height:7px;background:#e5e7eb;border-radius:999px;overflow:hidden}.progressBar{height:100%;background:#111827;transition:.2s}.pageNote{font-size:12px;color:var(--muted);margin-top:7px}
+.qList{display:flex;flex-direction:column;gap:11px}.q{background:#fff;border:1px solid var(--line);border-radius:17px;padding:14px}.q.correct{border-color:#86efac;background:#fbfffc}.q.wrong{border-color:#fda29b;background:#fffdfd}.qnum{font-size:11px;font-weight:900;color:var(--muted);margin-bottom:7px}.qtext{font-size:15px;line-height:1.7;font-weight:700}.blankMark{display:inline-block;border-bottom:2px solid #111827;min-width:54px;text-align:center;padding:0 4px;color:#111827}.answerRow{display:grid;grid-template-columns:1fr auto;gap:8px;margin-top:11px}.ans{width:100%;border:1.5px solid #cfd4dc;border-radius:12px;padding:11px 12px;background:#fff;outline:none}.ans:focus{border-color:#475467;box-shadow:0 0 0 3px rgba(71,84,103,.09)}.judge{border:0;border-radius:12px;background:#475467;color:#fff;padding:0 13px;font-weight:900}.feedback{display:none;margin-top:9px;border-radius:10px;padding:9px 10px;font-size:12.5px;line-height:1.55}.correct .feedback{display:block;background:var(--okbg);color:var(--ok)}.wrong .feedback{display:block;background:var(--ngbg);color:var(--ng)}.fbTitle{font-weight:900}.explain{margin-top:3px;color:#475467}.correct .explain{color:#166534}.wrong .explain{color:#7a271a}
+.actions{display:flex;gap:9px;margin-top:14px}.bigBtn{flex:1;border:0;border-radius:14px;padding:13px 12px;font-weight:900}.checkAll{background:#e2e8f0;color:#111827}.next{background:#111827;color:#fff}.next:disabled{opacity:.35}.secondary{background:#fff;border:1px solid var(--line);color:#344054}
+.result{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px;text-align:center}.scoreBig{font-size:50px;font-weight:950;letter-spacing:-.05em}.resultMsg{font-weight:900;font-size:19px;margin:4px 0}.resultSub{color:var(--muted);font-size:13px;line-height:1.6}.resultBtns{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.resultBtns button{border:0;border-radius:13px;padding:12px;font-weight:900}.again{background:#111827;color:white}.back{background:#e2e8f0;color:#111827}
+.footerNote{font-size:11px;color:#98a2b3;line-height:1.6;margin-top:16px;text-align:center}
+.catalogLaunch{width:100%;border:1px solid #cbd5e1;background:#fff;color:#111827;border-radius:15px;padding:13px 14px;font-weight:900;margin:0 0 15px;display:flex;align-items:center;justify-content:center;gap:7px}
+.setBtns{display:flex;gap:7px}.listMini{border:1px solid var(--line);background:#fff;color:#344054;border-radius:12px;padding:9px 11px;font-weight:900}
+.catalogHero{background:#fff;border:1px solid var(--line);border-radius:20px;padding:18px;margin-bottom:13px}.catalogHero h1{font-size:23px;margin:0 0 7px}.catalogHero p{font-size:13px;line-height:1.65;color:var(--muted);margin:0}
+.catalogGroup{margin:18px 0}.groupTitle{font-size:19px;font-weight:950;margin:0 0 9px;display:flex;align-items:center;gap:8px}.groupCount{font-size:11px;color:var(--muted);background:#eaeef4;border-radius:999px;padding:4px 8px}
+.catalogSet{background:#fff;border:1px solid var(--line);border-radius:17px;margin-bottom:10px;overflow:hidden}.catalogSetHead{padding:13px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #eef2f6}.catalogSetTitle{font-size:15px;font-weight:950}.catalogSetNo{font-size:11px;color:var(--muted);font-weight:800;margin-bottom:2px}.catalogStart{border:0;background:#111827;color:#fff;border-radius:10px;padding:8px 11px;font-size:12px;font-weight:900;white-space:nowrap}
+.problemList{margin:0;padding:5px 14px 10px 36px}.problemList li{padding:8px 2px;border-bottom:1px dashed #e4e7ec;font-size:12.5px;line-height:1.55;color:#344054}.problemList li:last-child{border-bottom:0}.listBlank{font-weight:900;color:#111827;letter-spacing:.05em}
+.catalogBack{width:100%;border:0;background:#e2e8f0;color:#111827;border-radius:13px;padding:12px;font-weight:900;margin-top:6px}
+@media(min-width:680px){.grid{grid-template-columns:1fr 1fr}.wrap{padding-top:24px}.q{padding:16px}.hero{padding:25px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div><div class="brand">構造穴埋め100</div><div class="sub">特別区Ⅰ類・建築｜2026秋 直前対策</div></div>
+    <button class="homeBtn" id="homeBtn">ホーム</button>
+  </div>
+  <main id="app"></main>
+</div>
+<script>
+const sets = [
+{
+ id:'rc1', no:1, priority:'s', ptxt:'最優先', title:'RC法規① 柱・床版・梁', desc:'施行令の数値を高速暗記。直近のS造「法規数値型」のRC版を想定。',
+ qs:[
+  ['RC造の構造耐力上主要な柱の主筋は、原則として（　）本以上とする。','4',['4本'], '施行令77条。柱主筋は4本以上。'],
+  ['RC造の柱の帯筋の径は（　）mm以上とする。','6',['6mm'], '帯筋の径は6mm以上。'],
+  ['RC造の柱の帯筋の間隔は、原則として（　）cm以下とする。','15',['15cm'], '一般部は15cm以下。'],
+  ['柱に接着する壁・梁等から柱小径の2倍以内の部分では、帯筋間隔を（　）cm以下とする。','10',['10cm'], '柱端部付近は10cm以下。'],
+  ['RC造の柱の帯筋比は（　）％以上とする。','0.2',['0.2%','0.2％'], '帯筋比は0.2％以上。'],
+  ['RC造の柱の主筋断面積の和は、コンクリート断面積の（　）％以上とする。','0.8',['0.8%','0.8％'], '主筋比は0.8％以上。'],
+  ['RC造の柱の小径は、構造耐力上主要な支点間距離の（　）以上とする。','1/15',['15分の1','1／15'], '柱小径は原則L/15以上。'],
+  ['RC造の構造耐力上主要な床版の厚さは、原則（　）cm以上とする。','8',['8cm'], '床版厚は8cm以上。'],
+  ['RC床版の厚さは、短辺方向の有効張り間長さの（　）以上とする。','1/40',['40分の1','1／40'], '8cm以上かつ短辺有効スパンの1/40以上。'],
+  ['RC造の梁のあばら筋は、原則として梁せいの（　）以下の間隔で配置する。','3/4',['4分の3','3／4'], '梁は複筋梁とし、あばら筋間隔は梁せいの3/4以下。']
+ ]
+},
+{
+ id:'rc2', no:2, priority:'s', ptxt:'最優先', title:'RC法規② 継手・定着・耐力壁', desc:'未出の数字が多く、穴埋めにしやすい本命範囲。',
+ qs:[
+  ['主筋等の重ね継手を引張力の最も小さい部分に設ける場合、重ね長さは鉄筋径の（　）倍以上とする。','25',['25倍'], '一般の主筋・耐力壁筋。最小引張部では25d以上。'],
+  ['主筋等の重ね継手を引張力の最も小さい部分以外に設ける場合、重ね長さは鉄筋径の（　）倍以上とする。','40',['40倍'], 'それ以外では40d以上。'],
+  ['柱に取り付ける梁の引張鉄筋を柱へ定着する長さは、原則として鉄筋径の（　）倍以上とする。','40',['40倍'], '柱への定着は40d以上。'],
+  ['軽量骨材コンクリートでは、通常25dとする重ね継手長さを（　）dとする。','30',['30倍','30d'], '軽量骨材では25d→30d。'],
+  ['軽量骨材コンクリートでは、通常40dとする継手・定着長さを（　）dとする。','50',['50倍','50d'], '軽量骨材では40d→50d。'],
+  ['RC造に用いる普通コンクリートの4週圧縮強度は、原則（　）N/mm²以上とする。','12',['12N/mm2','12N/mm²'], '施行令74条。普通コンクリートは12N/mm²以上。'],
+  ['軽量骨材を用いる場合の4週圧縮強度は、原則（　）N/mm²以上とする。','9',['9N/mm2','9N/mm²'], '軽量骨材の場合は9N/mm²以上。'],
+  ['RC造の耐力壁の厚さは、原則（　）cm以上とする。','12',['12cm'], '施行令78条の2。耐力壁厚は12cm以上。'],
+  ['RC耐力壁の開口部周囲には、径（　）mm以上の補強筋を配置する。','12',['12mm','D12'], '開口補強筋は径12mm以上。'],
+  ['RC耐力壁に配置する鉄筋は径9mm以上とし、原則として縦横（　）cm以下の間隔とする。','30',['30cm'], '単配筋は30cm以下。複配筋では45cm以下。']
+ ]
+},
+{
+ id:'wood', no:3, priority:'s', ptxt:'最優先', title:'木造法規・筋かい', desc:'近年は木造が説明問題止まり。数値穴埋め化を警戒。',
+ qs:[
+  ['木造の構造耐力上主要な柱の有効細長比は（　）以下とする。','150',[], '木造柱の有効細長比は150以下。'],
+  ['地階を除く階数が2を超える木造建築物の1階の主要な柱は、小径（　）cm以上が原則である。','13.5',['13.5cm'], '3階建て等の1階柱は原則13.5cm以上。'],
+  ['木造柱で、所要断面積の（　）以上を欠き取る場合は、その部分を補強しなければならない。','1/3',['3分の1','1／3'], '所要断面積の1/3以上を欠き取る場合は補強。'],
+  ['階数2以上の木造建築物の隅柱又はこれに準ずる柱は、原則として（　）柱とする。','通し',['通し柱'], '隅柱等は原則通し柱。'],
+  ['木造の梁・桁等の横架材では、その中央部附近の（　）側に耐力上支障のある欠込みをしてはならない。','下',['下側'], '曲げで引張となりやすい中央部下側の欠込みは禁止。'],
+  ['引張力を負担する木製筋かいは、厚さ（　）cm以上とする。','1.5',['1.5cm'], '引張筋かいは厚さ1.5cm以上。'],
+  ['引張力を負担する木製筋かいは、幅（　）cm以上とする。','9',['9cm'], '幅は9cm以上。'],
+  ['鉄筋を引張筋かいとして用いる場合、径（　）mm以上とする。','9',['9mm','D9'], '鉄筋筋かいは径9mm以上。'],
+  ['圧縮力を負担する木製筋かいは、厚さ（　）cm以上とする。','3',['3cm'], '圧縮筋かいは厚さ3cm以上・幅9cm以上。'],
+  ['筋かいには原則として（　）をしてはならない。','欠込み',['欠き込み','欠込'], '筋かいの欠込みは原則禁止。たすき掛け等でやむを得ない場合は補強する。']
+ ]
+},
+{
+ id:'loads', no:4, priority:'s', ptxt:'最優先', title:'荷重・外力 未出数値', desc:'既出の「風速の2乗」「Ai」などを避け、積載荷重・積雪を中心に。',
+ qs:[
+  ['事務室の床の構造計算に用いる積載荷重は（　）N/m²である。','2900',['2,900'], '令85条。事務室の床用は2,900N/m²。'],
+  ['事務室の大梁・柱・基礎の構造計算に用いる積載荷重は（　）N/m²である。','1800',['1,800'], '事務室の架構用は1,800N/m²。'],
+  ['事務室の地震力計算に用いる積載荷重は（　）N/m²である。','800',[], '事務室の地震用は800N/m²。'],
+  ['教室の床の構造計算に用いる積載荷重は（　）N/m²である。','2300',['2,300'], '教室の床用は2,300N/m²。'],
+  ['百貨店又は店舗の売場の地震力計算に用いる積載荷重は（　）N/m²である。','1300',['1,300'], '売場の地震用は1,300N/m²。'],
+  ['自動車車庫・自動車通路の床の構造計算に用いる積載荷重は（　）N/m²である。','5400',['5,400'], '車庫・車路の床用は5,400N/m²。'],
+  ['自動車車庫・自動車通路の大梁・柱・基礎用積載荷重は（　）N/m²である。','3900',['3,900'], '車庫・車路の架構用は3,900N/m²。'],
+  ['倉庫業を営む倉庫の床積載荷重は、実況値が小さくても（　）N/m²未満としてはならない。','3900',['3,900'], '令85条3項。倉庫業の倉庫は3,900N/m²が下限。'],
+  ['積雪の単位重量は、原則として積雪量1cmごとに1m²につき（　）N以上とする。','20',['20N'], '令86条。一般規定は20N/m²・cm以上。多雪区域では条例等で30Nの場合もある。'],
+  ['積雪荷重は、積雪の単位重量×屋根の（　）投影面積×垂直積雪量で求める。','水平',['水平投影面積'], '屋根の水平投影面積を用いる。']
+ ]
+},
+{
+ id:'concrete', no:5, priority:'a', ptxt:'重要', title:'コンクリート材料・劣化', desc:'構造分野で穴埋め化しやすい用語。既出の中性化・W/Cは除外。',
+ qs:[
+  ['コンクリートに持続荷重を作用させると、時間とともにひずみが増大する現象を（　）という。','クリープ',['creep'], '持続応力下で時間依存ひずみが増える現象。'],
+  ['硬化したコンクリートが水分を失うことで収縮する現象を（　）収縮という。','乾燥',['乾燥収縮'], '水分逸散による体積減少。'],
+  ['凍結融解抵抗性を高めるため、微細な独立気泡を連行する混和剤を（　）剤という。','AE',['AE剤','ae'], 'AE剤は微細な空気泡を連行する。'],
+  ['打込み後、材料分離により練混ぜ水の一部が上昇する現象を（　）という。','ブリーディング',['bleeding'], '水が上面へ上昇する現象。'],
+  ['ブリーディング水とともに微粒分が上昇し、表面に形成される脆弱な層を（　）という。','レイタンス',['laitance'], 'レイタンスは付着不良の原因になる。'],
+  ['粗骨材とモルタル分などが分離して均一性が失われる現象を（　）という。','材料分離',['分離'], '運搬・打込み時の過大落下などで起こりやすい。'],
+  ['締固め不足などにより粗骨材が露出し、空隙の多い欠陥部ができることを（　）という。','ジャンカ',['豆板'], 'ジャンカ（豆板）は密実性を損なう施工欠陥。'],
+  ['反応性シリカを含む骨材とセメント中のアルカリが反応し膨張する劣化を（　）反応という。','アルカリシリカ',['ASR','アルカリシリカ反応'], 'ASRは膨張・ひび割れを生じる。'],
+  ['塩化物イオンの侵入等により鉄筋腐食が進行する劣化現象を（　）という。','塩害',[], '海塩粒子や塩化物により鉄筋腐食が促進される。'],
+  ['コンクリートのヤング係数は、一般に圧縮強度が高くなるほど（　）なる。','大きく',['大きい','高く'], '高強度ほど一般に弾性係数も大きくなる。']
+ ]
+},
+{
+ id:'rcmech', no:6, priority:'a', ptxt:'重要', title:'RC耐震・破壊メカニズム', desc:'記述問題にも流用できる、少し難しめの未出論点。',
+ qs:[
+  ['RC梁で、コンクリート圧壊より先に引張鉄筋が降伏する破壊形式は、一般に（　）的である。','靭性',['じん性','靱性','靭性的','じん性的'], '鉄筋先行降伏は変形能力を確保しやすい。'],
+  ['RC部材では、曲げ破壊より先に（　）破壊が生じないようにすることが耐震上重要である。','せん断',['剪断'], 'せん断破壊は脆性的になりやすい。'],
+  ['梁端や柱脚などで曲げ降伏が集中し、大きな塑性回転を生じる領域を（　）ヒンジという。','塑性',['塑性ヒンジ'], '大地震時のエネルギー吸収を担う。'],
+  ['柱より梁を先に降伏させる耐震設計の考え方を、強柱（　）梁という。','弱',['強柱弱梁'], '層崩壊を避ける代表的な設計思想。'],
+  ['腰壁・垂れ壁等で柱の自由長が短くなった柱を（　）柱といい、せん断破壊に注意する。','短',['短柱'], '短柱はせん断力が大きくなりやすい。'],
+  ['フラットスラブ等で柱周りに生じる局部的なせん断破壊を（　）せん断破壊という。','パンチング',['押抜き','押し抜き'], '柱周囲を円錐・角錐状に抜ける破壊。'],
+  ['帯筋・フープ筋でコアコンクリートを拘束し、変形能力を高める効果を（　）効果という。','拘束',['コンファインド','コンファインメント'], '横補強筋による拘束効果。'],
+  ['柱の軸力が大きくなるほど一般に変形能力が低下するため、設計では（　）比に注意する。','軸力',['軸力比'], '軸力比が高い柱は靭性が低下しやすい。'],
+  ['地震時の繰返し変形で描く荷重―変形関係の閉じた曲線を（　）ループという。','履歴',['ヒステリシス','履歴ループ'], '履歴ループの面積は吸収エネルギーに対応。'],
+  ['1階だけが著しく柔らかく変形が集中する層を（　）ストーリーという。','ソフト',['soft','ソフトストーリー'], 'ピロティ階などで注意する。']
+ ]
+},
+{
+ id:'mechanics', no:7, priority:'a', ptxt:'重要', title:'構造力学 基本式', desc:'穴埋めにしやすい式と用語。短時間で得点源にするセット。',
+ qs:[
+  ['軸方向力Pを断面積Aで除した値 P/A を（　）という。','応力度',['応力','垂直応力度'], '軸応力度σ=P/A。'],
+  ['部材の伸びΔLを元の長さLで除した ΔL/L を（　）という。','ひずみ',['歪み','歪'], '軸ひずみε=ΔL/L。'],
+  ['弾性範囲で、応力度をひずみで除した比例定数を（　）係数という。','ヤング',['ヤング係数','縦弾性'], 'E=σ/ε。'],
+  ['曲げ応力度の最大値は、曲げモーメントMを断面（　）Zで除して求める。','係数',['断面係数'], 'σ=M/Z。'],
+  ['断面係数Zは、断面二次モーメントIを中立軸から最外縁までの距離（　）で除した値である。','y',['Y'], 'Z=I/y。'],
+  ['梁の曲げモーメント図の勾配は、符号を除けば（　）力に対応する。','せん断',['剪断'], 'dM/dx=V（符号規約による）。'],
+  ['単純梁中央に集中荷重Pが作用するとき、最大曲げモーメントは（　）である。','PL/4',['P L/4','PL÷4','pl/4'], '中央でMmax=PL/4。'],
+  ['単純梁全長に等分布荷重wが作用するとき、最大曲げモーメントは（　）である。','wL²/8',['wL^2/8','wL2/8','wl²/8','wl^2/8'], '中央でMmax=wL²/8。'],
+  ['片持梁先端に集中荷重Pが作用するとき、固定端の最大曲げモーメントは（　）である。','PL',['P L','pl'], '固定端で|Mmax|=PL。'],
+  ['曲げ変形のしにくさを表す曲げ剛性は、ヤング係数Eと断面二次モーメントIの積（　）で表す。','EI',['E I','ei'], '曲げ剛性=EI。']
+ ]
+},
+{
+ id:'soil', no:8, priority:'a', ptxt:'重要', title:'地盤・基礎 未出論点', desc:'既出のN値・粒径・負の摩擦・液状化・直接基礎種類・圧密を除外。',
+ qs:[
+  ['土の全応力から間隙水圧を差し引いた応力を（　）応力という。','有効',['有効応力'], 'σ′=σ-u。土骨格が負担する応力。'],
+  ['土粒子間の摩擦抵抗を表す土質定数を内部（　）角という。','摩擦',['内部摩擦角'], '一般にφで表す。'],
+  ['粘性土がせん断抵抗として持つ、垂直応力に依存しない成分を（　）という。','粘着力',['粘着','c'], '一般にcで表す。'],
+  ['擁壁が土から離れる方向へ変位したときに生じる土圧を（　）土圧という。','主働',['主働土圧','主動','主動土圧'], '主働土圧は通常、静止土圧より小さい。'],
+  ['擁壁が土側へ押し込まれる方向へ変位したときに生じる土圧を（　）土圧という。','受働',['受働土圧','受動','受動土圧'], '受働土圧は大きな抵抗側土圧。'],
+  ['建物の一部だけが他の部分より大きく沈下する現象を（　）沈下という。','不同',['不同沈下'], '不同沈下はひび割れや建具不良の原因。'],
+  ['杭先端の地盤反力によって支持力を得る成分を（　）支持力という。','先端',['先端支持力'], '杭支持力は先端抵抗と周面摩擦で構成される。'],
+  ['複数の杭が近接し、単杭の単純合計とは異なる挙動を示す現象を（　）杭効果という。','群',['群杭','群杭効果'], '杭間隔が小さいと群杭としての影響が現れる。'],
+  ['水平力を受ける杭に対して地盤が示す抵抗を、一般に地盤の（　）反力という。','水平',['水平地盤','水平地盤反力'], '杭の水平抵抗を評価する基本概念。'],
+  ['基礎底面付近で土が押し抜かれるように破壊する支持力破壊を（　）せん断破壊という。','パンチング',['パンチングせん断'], '緩い砂・軟弱地盤などで生じ得る支持力破壊形式。']
+ ]
+},
+{
+ id:'steel2', no:9, priority:'b', ptxt:'余力', title:'鉄骨 未出周辺論点', desc:'既出の細長比・横座屈・幅厚比・H形鋼名称・柱脚・ボルト孔寸法は除外。',
+ qs:[
+  ['高力ボルト摩擦接合では、接合面に生じる（　）力によってせん断力を伝達する。','摩擦',['摩擦力'], 'ボルト軸のせん断でなく、締付けによる接合面摩擦を利用。'],
+  ['高力ボルト摩擦接合で、接合面の滑りにくさを表す係数を（　）係数という。','すべり',['滑り','すべり係数'], '表面処理で確保する。'],
+  ['隅肉溶接の有効断面を評価するときに用いる最短距離を（　）厚という。','のど',['喉','のど厚'], '隅肉溶接の強度計算に用いる。'],
+  ['等脚隅肉溶接では、理論上のど厚は脚長の約（　）倍である。','0.7',['0.707','1/√2'], '正確には約0.707倍。'],
+  ['部材断面を完全に溶け込ませて接合する溶接を（　）溶込み溶接という。','完全',['完全溶込み'], '完全溶込み溶接は全断面を伝力させる接合。'],
+  ['ブレース構造では、地震時水平力を主としてブレースの（　）力で負担する。','軸',['軸力'], 'ブレースは引張・圧縮の軸力で抵抗。'],
+  ['ラーメン構造では、水平力に対して柱・梁の主として（　）変形で抵抗する。','曲げ',['曲げ変形'], '剛接合された柱梁の曲げが主体。'],
+  ['梁と柱が交差する接合部のウェブ領域を（　）ゾーンという。','パネル',['パネルゾーン'], '接合部パネルはせん断変形・耐力が重要。'],
+  ['鋼材が降伏後も大きく塑性変形できる性質を（　）という。','靭性',['じん性','靱性'], '耐震設計で重要な変形能力。'],
+  ['鋼構造で、塑性化後の断面耐力を評価する際に用いる断面係数を（　）断面係数という。','塑性',['塑性断面係数'], '全断面が降伏した状態を基準にする。']
+ ]
+},
+{
+ id:'systems', no:10, priority:'b', ptxt:'余力', title:'新構法・免震制振', desc:'未出で差がつく用語。PC（プレストレスト）は既出なので除外。',
+ qs:[
+  ['鋼管の内部にコンクリートを充填した柱を（　）構造という。','CFT',['cft','コンクリート充填鋼管','コンクリート充填鋼管構造'], 'Concrete Filled Steel Tube。'],
+  ['CFT柱では鋼管が内部コンクリートを拘束する（　）効果により変形性能向上が期待できる。','拘束',['コンファインド','コンファインメント'], '鋼管によるコンクリート拘束。'],
+  ['ひき板を層ごとに繊維方向が直交するよう積層接着した木質材料を（　）という。','CLT',['clt','直交集成板'], 'Cross Laminated Timber。'],
+  ['CLTの日本語名称は（　）集成板である。','直交',['直交集成板'], '繊維方向を直交させて積層する。'],
+  ['免震構造は建物の固有周期を一般に（　）することで地震応答を低減する。','長く',['長周期化','長くする','延ばす'], '免震層により長周期化する。'],
+  ['建物にダンパー等を設け、地震エネルギーを吸収させる構造を（　）構造という。','制振',['制震','制振構造','制震構造'], 'ダンパーで応答を低減。'],
+  ['免震装置の代表例で、ゴム層と鋼板を交互に積層した支承を（　）ゴム支承という。','積層',['積層ゴム'], '鉛直剛性を確保しつつ水平変形を許容。'],
+  ['粘性体の速度依存抵抗を利用してエネルギーを吸収する装置を（　）ダンパーという。','オイル',['粘性','オイルダンパー'], '速度依存型の代表的ダンパー。'],
+  ['工場で製作したRC部材を現場で組み立てる工法を（　）コンクリート工法という。','プレキャスト',['PCa','プレキャストコンクリート'], 'PCaと表記。プレストレストPCとは別。'],
+  ['プレキャスト部材同士を現場打ちコンクリート等で一体化する接合部を（　）部という。','接合',['ジョイント','接合部'], '接合部の応力伝達と一体性が重要。']
+ ]
+}
+];
+
+const catalogGroups = [
+ {name:'RC構造', ids:['rc1','rc2','concrete','rcmech']},
+ {name:'木造', ids:['wood']},
+ {name:'荷重・構造力学', ids:['loads','mechanics']},
+ {name:'地盤・基礎', ids:['soil']},
+ {name:'鉄骨', ids:['steel2']},
+ {name:'新構法・免震制振', ids:['systems']}
+];
+
+const app=document.getElementById('app');
+const homeBtn=document.getElementById('homeBtn');
+let current=null, page=0, states=[];
+const storageKey='tokubetsuku_structural_2026_scores';
+const getScores=()=>{try{return JSON.parse(localStorage.getItem(storageKey)||'{}')}catch(e){return {}}};
+const setScores=o=>localStorage.setItem(storageKey,JSON.stringify(o));
+
+function normalize(s){
+ return String(s??'').trim().toLowerCase()
+  .replace(/[０-９]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0))
+  .replace(/[Ａ-Ｚａ-ｚ]/g,c=>String.fromCharCode(c.charCodeAt(0)-0xFEE0))
+  .replace(/，/g,',').replace(/．/g,'.').replace(/／/g,'/')
+  .replace(/[\s　]/g,'').replace(/,/g,'')
+  .replace(/平方ミリメートル/g,'mm2').replace(/平方メートル/g,'m2')
+  .replace(/n\/mm²/g,'').replace(/n\/mm2/g,'').replace(/n\/m²/g,'').replace(/n\/m2/g,'')
+  .replace(/mm|cm|％|%|本|倍$/g,'')
+  .replace(/[・･]/g,'');
+}
+function accepted(q, user){
+ const vals=[q[1],...(q[2]||[])].map(normalize);
+ const u=normalize(user);
+ return vals.includes(u);
+}
+function blankify(text){return text.replace('（　）','<span class="blankMark">　　　</span>')}
+
+function renderHome(){
+ current=null; page=0; states=[]; homeBtn.style.display='none';
+ const scores=getScores();
+ app.innerHTML=`
+ <section class="hero"><h1>特別区 建築構造<br>未出穴埋め100</h1><p>1セット10問・2ページ構成。各ページ5問ずつ縦に解答し、判定ボタンで即時に正誤を確認できます。明日までなら「最優先」から。</p></section>
+ <div class="notice"><b>出題方針：</b> 公開確認した近年の特別区・建築構造で、すでに直接問われた論点は原則として除外。未出の周辺法規・構造用語を、秋試験と同等〜やや高めにしています。<br><b>おすすめ：</b> 今夜は問題1→4を2周、余力があれば5→8。9・10は最後でOK。</div>
+ <button class="catalogLaunch" onclick="renderCatalog()">☰ 分野別・100問一覧を見る</button>
+ <div class="legend"><span class="badge s">最優先</span><span class="badge a">重要</span><span class="badge b">余力</span></div>
+ <div class="grid">${sets.map(s=>{
+   const sc=scores[s.id];
+   return `<article class="setCard"><div class="setTop"><div><div class="setNo">問題 ${s.no} / 10問</div><div class="setTitle">${s.title}</div></div><span class="badge ${s.priority}">${s.ptxt}</span></div><div class="setDesc">${s.desc}</div><div class="setFoot"><div class="score">${sc!=null?`前回 ${sc}/10`:'未挑戦'}</div><div class="setBtns"><button class="listMini" onclick="renderCatalog('${s.id}')">一覧</button><button class="start" onclick="startSet('${s.id}')">開始</button></div></div></article>`
+ }).join('')}</div>
+ <div class="footerNote">法規数値は2026年9月時点の現行規定を前提に作成。自治体条例等による上乗せがあるものは一般規定を出題しています。</div>`;
+}
+
+
+function listQuestionText(text){
+ return escapeHtml(text).replace('（　）','<span class="listBlank">（　　　）</span>');
+}
+function renderCatalog(focusId=null){
+ current=null; page=0; states=[]; homeBtn.style.display='block';
+ app.innerHTML=`
+ <section class="catalogHero"><h1>分野別・問題一覧</h1><p>未出予想100問を分野別に確認できます。答えはここでは表示しません。覚えたい項目を見つけたら、そのセットからすぐ演習できます。</p></section>
+ ${catalogGroups.map(g=>{
+   const groupSets=g.ids.map(id=>sets.find(s=>s.id===id)).filter(Boolean);
+   const count=groupSets.reduce((n,s)=>n+s.qs.length,0);
+   return `<section class="catalogGroup"><h2 class="groupTitle">${g.name}<span class="groupCount">${count}問</span></h2>${groupSets.map(s=>`
+    <article class="catalogSet" id="catalog-${s.id}"><div class="catalogSetHead"><div><div class="catalogSetNo">問題 ${s.no} ・ ${s.ptxt}</div><div class="catalogSetTitle">${s.title}</div></div><button class="catalogStart" onclick="startSet('${s.id}')">この10問を解く</button></div>
+    <ol class="problemList">${s.qs.map(q=>`<li>${listQuestionText(q[0])}</li>`).join('')}</ol></article>`).join('')}</section>`
+ }).join('')}
+ <button class="catalogBack" onclick="renderHome()">ホームへ戻る</button>
+ <div class="footerNote">一覧は問題文のみ表示。正答・解説は演習画面で判定後に確認できます。</div>`;
+ if(focusId){
+   setTimeout(()=>{const el=document.getElementById('catalog-'+focusId);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},0);
+ } else { window.scrollTo({top:0,behavior:'instant'}); }
+}
+
+function startSet(id){
+ current=sets.find(s=>s.id===id); page=0; states=current.qs.map(()=>({value:'',judged:false,ok:false})); homeBtn.style.display='block'; renderQuiz(); window.scrollTo({top:0,behavior:'instant'});
+}
+function renderQuiz(){
+ const start=page*5, qs=current.qs.slice(start,start+5);
+ app.innerHTML=`<div class="quizHead"><div class="crumb">問題 ${current.no} ・ ${page+1}/2ページ</div><div class="quizTitle">${current.title}</div><div class="progressTrack"><div class="progressBar" style="width:${page?100:50}%"></div></div><div class="pageNote">問${start+1}〜${start+5}。入力後「判定」で即チェックできます。</div></div>
+ <div class="qList">${qs.map((q,i)=>qHTML(start+i,q)).join('')}</div>
+ <div class="actions"><button class="bigBtn checkAll" onclick="checkPage()">5問まとめて採点</button><button class="bigBtn next" onclick="nextPage()">${page===0?'次の5問へ':'結果を見る'}</button></div>`;
+ qs.forEach((q,i)=>restoreUI(start+i));
+}
+function qHTML(idx,q){
+ const st=states[idx];
+ return `<section class="q ${st.judged?(st.ok?'correct':'wrong'):''}" id="q${idx}"><div class="qnum">Q${idx+1}</div><div class="qtext">${blankify(q[0])}</div><div class="answerRow"><input class="ans" id="a${idx}" autocomplete="off" autocapitalize="off" placeholder="答えを入力" value="${escapeHtml(st.value)}" oninput="saveVal(${idx},this.value)" onkeydown="if(event.key==='Enter'){judge(${idx})}"><button class="judge" onclick="judge(${idx})">判定</button></div><div class="feedback"><div class="fbTitle"></div><div class="explain"></div></div></section>`;
+}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function saveVal(i,v){states[i].value=v;states[i].judged=false;states[i].ok=false;const el=document.getElementById('q'+i); if(el){el.classList.remove('correct','wrong');}}
+function judge(i){
+ const q=current.qs[i], input=document.getElementById('a'+i); if(input)states[i].value=input.value;
+ const ok=accepted(q,states[i].value); states[i].judged=true; states[i].ok=ok;
+ const el=document.getElementById('q'+i); el.classList.remove('correct','wrong'); el.classList.add(ok?'correct':'wrong');
+ const t=el.querySelector('.fbTitle'), ex=el.querySelector('.explain');
+ t.textContent=ok?'✓ 正解':'✕ 不正解　正答：'+q[1]; ex.textContent=q[3];
+}
+function restoreUI(i){
+ if(!states[i].judged)return; const q=current.qs[i],el=document.getElementById('q'+i); if(!el)return;
+ const t=el.querySelector('.fbTitle'),ex=el.querySelector('.explain'); t.textContent=states[i].ok?'✓ 正解':'✕ 不正解　正答：'+q[1]; ex.textContent=q[3];
+}
+function checkPage(){for(let i=page*5;i<page*5+5;i++)judge(i)}
+function nextPage(){
+ checkPage();
+ if(page===0){page=1;renderQuiz();window.scrollTo({top:0,behavior:'smooth'})} else renderResult();
+}
+function renderResult(){
+ const score=states.filter(s=>s.ok).length; const scores=getScores(); scores[current.id]=score; setScores(scores);
+ let msg=score===10?'満点。ここは仕上がっています。':score>=8?'かなり良いです。間違いだけ再確認。':score>=6?'あと一周で固められます。':'今夜もう一周して数字を固定。';
+ app.innerHTML=`<section class="result"><div class="crumb">問題 ${current.no} 完了</div><div class="scoreBig">${score}<span style="font-size:20px;color:#98a2b3">/10</span></div><div class="resultMsg">${msg}</div><div class="resultSub">間違えた問題は、もう一度このセットを解くと定着しやすいです。明日直前は「正答＋一行解説」だけ見返す使い方でもOK。</div><div class="resultBtns"><button class="again" onclick="startSet('${current.id}')">もう一度</button><button class="back" onclick="renderHome()">ホームへ</button></div></section>`;
+}
+homeBtn.onclick=renderHome;
+if('serviceWorker' in navigator){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));}
+renderHome();
+</script>
+</body>
+</html>
